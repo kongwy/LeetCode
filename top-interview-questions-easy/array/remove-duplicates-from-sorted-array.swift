@@ -18,7 +18,27 @@ class Solution {
                 uniqueCounter += 1
             }
         }
-        print("\(uniqueCounter), nums = \(nums)")
+        // print("\(uniqueCounter), nums = \(nums)")
         return nums.count
     }
 }
+
+// revised solution
+class Solution {
+    func removeDuplicates(_ nums: inout [Int]) -> Int {
+        var flagPointer = 0
+        // in case of empty array input
+        if nums.count == 0 {
+            return 0
+        }
+        for scanPointer in 0..<nums.count {
+            if nums[flagPointer] != nums[scanPointer] {
+                flagPointer += 1
+                nums[flagPointer] = nums[scanPointer]
+            }
+        }
+        nums.dropLast(nums.count - flagPointer)
+        return flagPointer + 1
+    }
+}
+
